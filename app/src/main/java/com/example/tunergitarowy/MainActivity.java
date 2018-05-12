@@ -13,6 +13,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private RecordingThread recordingThread;
+    private TunerView tunerView;
     private Button recordButton;
     private TextView helloView;
     private static final int REQUEST_RECORD_AUDIO = 13;
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        tunerView = (TunerView) findViewById(R.id.tunerview);
 
 
         helloView = this.findViewById(R.id.textView);
@@ -42,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         recordingThread = new RecordingThread(new AudioDataReceivedListener() {
             @Override
             public void onAudioDataReceived(short[] data) {
-
+                tunerView.transferSamples(data);
             }
         });
 
