@@ -1,12 +1,16 @@
 package com.example.tunergitarowy;
 
+import android.util.Log;
+
 public class FFT {
 
-    static int n, m;
+    private static final String LOG_TAG = RecordingThread.class.getSimpleName();
+
+    private int n, m;
 
     // Lookup tables. Only need to recompute when size of FFT changes.
-    static double[] cos;
-    static double[] sin;
+    private double[] cos;
+    private double[] sin;
 
     public FFT(int n) {
         this.n = n;
@@ -25,9 +29,11 @@ public class FFT {
             sin[i] = Math.sin(-2 * Math.PI * i / n);
         }
 
+        Log.e(LOG_TAG, String.format("FFT class initialized with window %d", n));
+
     }
 
-    public static void fft(double[] x, double[] y) {
+    public void fft(double[] x, double[] y) {
         int i, j, k, n1, n2, a;
         double c, s, t1, t2;
 

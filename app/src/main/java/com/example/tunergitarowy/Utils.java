@@ -1,6 +1,7 @@
 package com.example.tunergitarowy;
 
 import android.util.Log;
+import java.util.List;
 
 public class Utils {
     private static final String LOG_TAG = RecordingThread.class.getSimpleName();
@@ -42,5 +43,26 @@ public class Utils {
             int j = i - pos; // j = index into Hann window function
             signal_out[i] = (short) (signal_in[i] * 0.5 * (1.0 - Math.cos(2.0 * Math.PI * j / size)));
         }
+    }
+
+    public static double[] copyFromShortArray(short[] source) {
+        double[] dest = new double[source.length];
+        for(int i=0; i<source.length; i++) {
+            dest[i] = source[i];
+        }
+        return dest;
+    }
+
+    public static double max(double[] values) {
+        if (values.length == 0) {
+            return 0;
+        }
+        double max = values[0];
+        int length = values.length;
+        for (int i = 1; i < length; i++) {
+            double value = values[i];
+            max = Math.max(max, value);
+        }
+        return max;
     }
 }
