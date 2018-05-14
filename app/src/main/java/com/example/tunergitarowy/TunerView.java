@@ -51,8 +51,6 @@ public class TunerView extends View {
     private void onSampleChange(){
         // TODO: Przetwarzanie probek
 
-        double hzPerSample = ((double)(44100 / 2)) / samples.length;
-
         short[] signal_out = new short[window_size];
         double[] spectrum = new double[window_size];
         double[] hps = new double[window_size];
@@ -70,7 +68,9 @@ public class TunerView extends View {
                 maxIndex = i;
         }
 
-        Log.i(LOG_TAG, String.format("maxIndex: %d, HZ: %f", maxIndex, maxIndex * hzPerSample));
+        double freq = ((double)maxIndex / (double)samples.length) * 44100;
+
+        Log.i(LOG_TAG, String.format("maxIndex: %d, HZ: %f", maxIndex, freq));
 
         postInvalidate();
     }
