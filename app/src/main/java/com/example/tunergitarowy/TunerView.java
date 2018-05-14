@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.Arrays;
 
 public class TunerView extends View {
-    private static final int window_size=32768;
+    private static final int window_size=4096;
 
     private static final String LOG_TAG = RecordingThread.class.getSimpleName();
 
@@ -56,9 +56,9 @@ public class TunerView extends View {
         Utils.HanningWindow(samples, signal_out, 0, window_size);
         double[] doubles = Utils.copyFromShortArray(signal_out);
         fft.fft(doubles, spectrum);
-        Utils.calcHarmonicProductSpectrum(spectrum, hps, 0);
+        Utils.calcHarmonicProductSpectrum(spectrum, hps, 1);
         double max = Utils.max(hps);
-        Log.i(LOG_TAG, String.format("Max HPS: %f", max));
+        Log.i(LOG_TAG, String.format("Max HPS: %f", (max/window_size) * 44100));
         postInvalidate();
     }
 

@@ -21,7 +21,7 @@ import android.util.Log;
 
 public class RecordingThread {
     private static final String LOG_TAG = RecordingThread.class.getSimpleName();
-    private static final int SAMPLE_RATE = 32768;
+    private static final int SAMPLE_RATE = 44100;
 
     public RecordingThread(AudioDataReceivedListener listener) {
         mListener = listener;
@@ -69,7 +69,7 @@ public class RecordingThread {
         //if (bufferSize == AudioRecord.ERROR || bufferSize == AudioRecord.ERROR_BAD_VALUE) {
         //    bufferSize = SAMPLE_RATE * 2;
         //}
-        int bufferSize = SAMPLE_RATE * 2;
+        int bufferSize = 4096 * 2;
         short[] audioBuffer = new short[bufferSize / 2];
 
         AudioRecord record = new AudioRecord(MediaRecorder.AudioSource.DEFAULT,
