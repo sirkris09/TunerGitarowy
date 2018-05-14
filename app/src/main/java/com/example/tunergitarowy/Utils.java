@@ -53,16 +53,4 @@ public class Utils {
         return dest;
     }
 
-    public static double max(double[] values) {
-        if (values.length == 0) {
-            return 0;
-        }
-        double max = values[0];
-        int length = values.length;
-        for (int i = 1; i < length; i++) {
-            double value = values[i];
-            max = Math.max(max, value);
-        }
-        return max;
-    }
 }

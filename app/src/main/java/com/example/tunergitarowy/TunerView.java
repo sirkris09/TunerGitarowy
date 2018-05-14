@@ -50,15 +50,28 @@ public class TunerView extends View {
 
     private void onSampleChange(){
         // TODO: Przetwarzanie probek
+
+        double hzPerSample = ((double)(44100 / 2)) / samples.length;
+
         short[] signal_out = new short[window_size];
         double[] spectrum = new double[window_size];
         double[] hps = new double[window_size];
         Utils.HanningWindow(samples, signal_out, 0, window_size);
         double[] doubles = Utils.copyFromShortArray(signal_out);
         fft.fft(doubles, spectrum);
-        Utils.calcHarmonicProductSpectrum(spectrum, hps, 1);
-        double max = Utils.max(hps);
-        Log.i(LOG_TAG, String.format("Max HPS: %f", (max/window_size) * 44100));
+
+        for (int i=0; i < spectrum.length; i++){
+            doubles[i] = Math.abs(spectrum[i]);
+        }
+        Utils.calcHarmonicProductSpectrum(doubles, hps, 1);
+        int maxIndex = 0;;
+        for (int i = 1; i < hps.length; i++) {
+            if(hps[maxIndex] < hps[i])
+                maxIndex = i;
+        }
+
+        Log.i(LOG_TAG, String.format("maxIndex: %d, HZ: %f", maxIndex, maxIndex * hzPerSample));
+
         postInvalidate();
     }
 
