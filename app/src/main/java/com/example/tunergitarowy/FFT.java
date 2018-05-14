@@ -2,11 +2,11 @@ package com.example.tunergitarowy;
 
 public class FFT {
 
-    int n, m;
+    static int n, m;
 
     // Lookup tables. Only need to recompute when size of FFT changes.
-    double[] cos;
-    double[] sin;
+    static double[] cos;
+    static double[] sin;
 
     public FFT(int n) {
         this.n = n;
@@ -27,7 +27,7 @@ public class FFT {
 
     }
 
-    public void fft(double[] x, double[] y) {
+    public static void fft(double[] x, double[] y) {
         int i, j, k, n1, n2, a;
         double c, s, t1, t2;
 

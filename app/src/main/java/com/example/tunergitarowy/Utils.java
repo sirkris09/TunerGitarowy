@@ -5,7 +5,7 @@ import android.util.Log;
 public class Utils {
     private static final String LOG_TAG = RecordingThread.class.getSimpleName();
 
-    public void calcHarmonicProductSpectrum(double[] mag, double[] hps, int order) {
+    public static void calcHarmonicProductSpectrum(double[] mag, double[] hps, int order) {
         if(mag.length != hps.length) {
             Log.e(LOG_TAG, "calcHarmonicProductSpectrum: mag[] and hps[] have to be of the same length!");
             throw new IllegalArgumentException("mag[] and hps[] have to be of the same length");
@@ -35,7 +35,7 @@ public class Utils {
     }
 
 
-    public void HanningWindow(short[] signal_in, short[] signal_out, int pos, int size)
+    public static void HanningWindow(short[] signal_in, short[] signal_out, int pos, int size)
     {
         for (int i = pos; i < pos + size; i++)
         {

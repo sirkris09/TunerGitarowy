@@ -6,7 +6,7 @@ import android.view.View;
 import android.util.AttributeSet;
 
 public class TunerView extends View {
-
+    private static final int window_size=44100;
     private short[] samples;
     public TunerView(Context context) {
         super(context);
@@ -27,6 +27,13 @@ public class TunerView extends View {
 
     private void onSampleChange(){
         // TODO: Przetwarzanie probek
+        short[] signal_out;
+        double[] spectrum;
+        double[] hps;
+        Utils.HanningWindow(samples, signal_out, 0, window_size);
+        double[] doubles = Arrays.stream(signal_out).asDoubleStream().toArray();
+        FFT.fft(doubles, spectrum);
+        Utils.calcHarmonicProductSpectrum(spectrum, hps, 0);
         postInvalidate();
     }
 
