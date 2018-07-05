@@ -69,7 +69,7 @@ public class RecordingThread {
         //if (bufferSize == AudioRecord.ERROR || bufferSize == AudioRecord.ERROR_BAD_VALUE) {
         //    bufferSize = SAMPLE_RATE * 2;
         //}
-        int bufferSize = 4096 * 2;
+        int bufferSize = 32768 * 2;
         short[] audioBuffer = new short[bufferSize / 2];
 
         AudioRecord record = new AudioRecord(MediaRecorder.AudioSource.DEFAULT,
