@@ -73,8 +73,13 @@ public class TunerView extends View {
 
         canvas.drawText(String.format("Targeted range: %f ", range), 20,100, this.mTextPaint);
         canvas.drawText(String.format("HZ: %f", freq), 20, 220, this.mTextPaint);
-
-        if (freq  < range * 1.05 && freq > range * 0.95 ){
+        if (freq  > range ){
+            canvas.drawText(String.format("Frequency too high"), 20,450, this.mTextPaint);
+        }
+        else {
+            canvas.drawText(String.format("Frequency too low"), 20, 450, this.mTextPaint);
+        }
+            if (freq  < range * 1.05 && freq > range * 0.95 ){
             canvas.drawCircle(40, 320, 25, this.mCircleGoodPaint);
         }else{
             canvas.drawCircle(40, 320, 25, this.mCircleBadPaint);
