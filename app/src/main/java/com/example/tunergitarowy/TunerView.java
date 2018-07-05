@@ -30,6 +30,8 @@ public class TunerView extends View {
 
     private float[] ranges = new float [] {329.63f,246.94f,196.00f,146.83f,110.00f,82.41f};
 
+    private int rangeSelector = 0;
+
     private Paint mTextPaint;
     private Paint mCircleGoodPaint;
     private Paint mCircleBadPaint;
@@ -69,7 +71,7 @@ public class TunerView extends View {
         // TODO: Rysowanie interfejsu
         super.onDraw(canvas);
 
-        float range = ranges[1];
+        float range = ranges[rangeSelector];
 
         canvas.drawText(String.format("Targeted range: %f ", range), 20,100, this.mTextPaint);
         canvas.drawText(String.format("HZ: %f", freq), 20, 220, this.mTextPaint);
@@ -85,6 +87,10 @@ public class TunerView extends View {
             canvas.drawCircle(40, 320, 25, this.mCircleBadPaint);
         }
 
+    }
+
+    public void setRangeSelector(int rangeSelector){
+        this.rangeSelector = rangeSelector;
     }
 
     private void onSampleChange(){

@@ -16,7 +16,7 @@ public class TunerActivity extends AppCompatActivity {
 
     private RecordingThread recordingThread;
     private TunerView tunerView;
-    private int range_selector;
+    private int rangeSelector;
 
     private static final int REQUEST_RECORD_AUDIO = 13;
 
@@ -27,8 +27,8 @@ public class TunerActivity extends AppCompatActivity {
 
         tunerView = (TunerView) findViewById(R.id.tunerView);
 
-        range_selector = getIntent().getIntExtra(MainActivity.EXTRA_INT, 0);
-
+        rangeSelector = getIntent().getIntExtra(MainActivity.EXTRA_INT, 0);
+        tunerView.setRangeSelector(rangeSelector);
 
         recordingThread = new RecordingThread(new AudioDataReceivedListener() {
             @Override
