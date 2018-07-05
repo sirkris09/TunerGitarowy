@@ -54,7 +54,7 @@ public class TunerView extends View {
         samples = new short[window_size];
         mTextPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
         mTextPaint.setColor(ContextCompat.getColor(context, R.color.colorPrimary));
-        mTextPaint.setTextSize(100);
+        mTextPaint.setTextSize(50);
         mCircleBadPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mCircleBadPaint.setColor(ContextCompat.getColor(context, R.color.colorRed));
         mCircleGoodPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
