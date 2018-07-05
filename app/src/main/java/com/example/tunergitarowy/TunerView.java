@@ -28,7 +28,11 @@ public class TunerView extends View {
     private double freq;
     private int maxIndex;
 
+    private float[] ranges = new float [] {329.63f,246.94f,196.00f,146.83f,110.00f,82.41f};
+
     private Paint mTextPaint;
+    private Paint mCircleGoodPaint;
+    private Paint mCircleBadPaint;
 
 
     public TunerView(Context context) {
@@ -51,6 +55,11 @@ public class TunerView extends View {
         mTextPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
         mTextPaint.setColor(ContextCompat.getColor(context, R.color.colorPrimary));
         mTextPaint.setTextSize(100);
+        mCircleBadPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mCircleBadPaint.setColor(ContextCompat.getColor(context, R.color.colorRed));
+        mCircleGoodPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mCircleGoodPaint.setColor(ContextCompat.getColor(context, R.color.colorGreen));
+
         Log.e(LOG_TAG, "TunerView class initialized!");
     }
 
@@ -60,10 +69,16 @@ public class TunerView extends View {
         // TODO: Rysowanie interfejsu
         super.onDraw(canvas);
 
+        float range = ranges[1];
 
-        canvas.drawText(String.format("maxIndex: %d ", maxIndex), 20,100, this.mTextPaint);
+        canvas.drawText(String.format("Targeted range: %f ", range), 20,100, this.mTextPaint);
         canvas.drawText(String.format("HZ: %f", freq), 20, 220, this.mTextPaint);
 
+        if (freq  < range * 1.05 && freq > range * 0.95 ){
+            canvas.drawCircle(40, 320, 25, this.mCircleGoodPaint);
+        }else{
+            canvas.drawCircle(40, 320, 25, this.mCircleBadPaint);
+        }
 
     }
 
