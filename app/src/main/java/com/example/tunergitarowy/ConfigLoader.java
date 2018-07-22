@@ -11,6 +11,7 @@ import java.lang.String;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,7 +21,7 @@ public class ConfigLoader {
 
     private static final String LOG_TAG = ConfigLoader.class.getSimpleName();
 
-    public static void loadConfig(Context context) throws Exception
+    public static HashMap<String, int[]> loadConfig(Context context) throws Exception
     {
         File directory = context.getFilesDir();
         File config = new File(directory, "config.json");
@@ -35,12 +36,14 @@ public class ConfigLoader {
 
         InputStream configInputStream = new FileInputStream(config);
         String jsonString = loadJSONFromAsset(configInputStream);
-        loadProfilesFromJSON(jsonString);
+        return loadProfilesFromJSON(jsonString);
     }
 
-    private static void loadProfilesFromJSON(String jsonString){
+    private static HashMap<String, int[]> loadProfilesFromJSON(String jsonString){
         try {
             JSONObject json = new JSONObject(jsonString);
+
+            HashMap<String, int[]> configMap = new HashMap<String, int[]>();
 
             JSONArray profilesArray = json.getJSONArray("profiles");
             for (int i = 0; i < profilesArray.length(); i++) {
@@ -56,10 +59,13 @@ public class ConfigLoader {
                     indexes[j] = pithIndexes.optInt(j);
                 }
                 Log.i(LOG_TAG, "Pitch indexes: " + Arrays.toString(indexes));
+                configMap.put(profileName,indexes);
             }
             Log.i(LOG_TAG, "Config loaded: " + jsonString);
+            return configMap;
         } catch (JSONException je){
             je.printStackTrace();
+            return null;
         }
     }
 

@@ -7,6 +7,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,13 +30,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Load config
         try {
-            ConfigLoader.loadConfig(this.getApplicationContext());
+            ((TunerApp) this.getApplication()).setProfiles(ConfigLoader.loadConfig(this.getApplicationContext()));
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        
+        Log.i("MainActivity", "Settings check: " + ((TunerApp) this.getApplication()).getProfiles().toString());
+
+
 
     }
 
