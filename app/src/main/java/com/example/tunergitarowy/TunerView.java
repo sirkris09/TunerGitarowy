@@ -18,6 +18,8 @@ import java.util.Collections;
 
 import java.util.Arrays;
 
+import pl.pawelkleczkowski.customgauge.CustomGauge;
+
 public class TunerView extends View {
     private static final int window_size=32768;
 
@@ -71,6 +73,11 @@ public class TunerView extends View {
         // TODO: Rysowanie interfejsu
         super.onDraw(canvas);
 
+        CustomGauge gauge1 = (CustomGauge) ((TunerActivity) getContext()).findViewById(R.id.gauge1);
+
+        gauge1.setEndValue(1000);
+
+
         float range = Utils.pitchIndexToFrequency(pitchIndex);
 
         canvas.drawText(String.format("Targeted range: %f ", range), 20,100, this.mTextPaint);
@@ -86,6 +93,7 @@ public class TunerView extends View {
         }else{
             canvas.drawCircle(40, 320, 25, this.mCircleBadPaint);
         }
+        gauge1.setValue((int) freq);
 
     }
 
