@@ -107,7 +107,7 @@ public class TunerView extends View {
             doubles[i] = Math.abs(spectrum[i]);
         }
         Utils.calcHarmonicProductSpectrum(doubles, hps, 1);
-        int maxIndex = 0;;
+        int maxIndex = 0;
         for (int i = 1; i < hps.length; i++) {
             if(hps[maxIndex] < hps[i])
                 maxIndex = i;
@@ -118,8 +118,8 @@ public class TunerView extends View {
         Log.i(LOG_TAG, String.format("maxIndex: %d, HZ: %f", maxIndex, freq));
         this.freq = freq;
         this.maxIndex = maxIndex;
-        postInvalidate();
-    }
+    postInvalidate();
+}
 
     public void transferSamples(short[] data){
         if (data.length != window_size){

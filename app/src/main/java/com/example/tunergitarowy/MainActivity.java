@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private Button recordButton;
     private TextView helloView;
     private static final int REQUEST_RECORD_AUDIO = 13;
-    private static final String[] ranges = new String[] {"E","B","G","D","A","E"};
+    private static final String[] ranges = new String[] {"E4","B3","G3","D3","A2","E2"};
     private Integer choice;
 
     public static final String EXTRA_INT = "com.example.tunergitarowy.INT";
