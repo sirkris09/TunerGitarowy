@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void startTuner(){
         Intent intent = new Intent(this, TunerActivity.class);
-        intent.putExtra(this.EXTRA_INT, pitchIndex);
+        intent.putExtra(this.EXTRA_INT);
         startActivity(intent);
     }
 
