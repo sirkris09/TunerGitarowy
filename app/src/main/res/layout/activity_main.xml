@@ -14,7 +14,8 @@
         android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@color/colorGreen" />
+        app:srcCompat="@color/colorGreen"
+        android:contentDescription="TODO" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -24,7 +25,8 @@
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@color/colorRed" />
+        app:srcCompat="@color/colorRed"
+        android:contentDescription="TODO" />
 
     <ImageButton
         android:id="@+id/imageButton3"
@@ -32,6 +34,7 @@
         android:layout_height="125dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="36dp"
+        android:contentDescription="TODO"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton"
         app:srcCompat="@color/colorPrimary" />

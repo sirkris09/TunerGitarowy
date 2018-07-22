@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -30,6 +31,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Button imageButton = this.findViewById(R.id.imageButton);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //open ProfileSelectorActivity
+            }
+        });
+
+        Button imageButton2 = this.findViewById(R.id.imageButton2);
+        imageButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               //open ProfileEditorActivity
+            }
+        });
+
+        Button imageButton3 = this.findViewById(R.id.imageButton3);
+        imageButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startTuner();
+            }
+        });
+
+
         // Load config
         try {
             ((TunerApp) this.getApplication()).setProfiles(ConfigLoader.loadConfig(this.getApplicationContext()));
@@ -41,6 +67,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+
+    private void startTuner(){
+        Intent intent = new Intent(this, TunerActivity.class);
+        intent.putExtra(this.EXTRA_INT, pitchIndex);
+        startActivity(intent);
     }
 
 }
