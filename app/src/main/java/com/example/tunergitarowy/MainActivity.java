@@ -29,35 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_dropdown_item,
-                ranges);
-        spinner.setAdapter(arrayAdapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               choice = position;
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                choice = 0;
-            }
-        });
-
-        recordButton = this.findViewById(R.id.record);
-        recordButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startTuner(choice);
-            }
-        });
     }
 
-    private void startTuner(int range_selector){
-        Intent intent = new Intent(this, TunerActivity.class);
-        intent.putExtra(this.EXTRA_INT, range_selector);
-        startActivity(intent);
-    }
 }
