@@ -31,15 +31,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button imageButton = this.findViewById(R.id.imageButton);
+        ImageButton imageButton = this.findViewById(R.id.imageButton);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //open ProfileSelectorActivity
+                startProfileSelector();
             }
         });
 
-        Button imageButton2 = this.findViewById(R.id.imageButton2);
+        ImageButton imageButton2 = this.findViewById(R.id.imageButton2);
         imageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button imageButton3 = this.findViewById(R.id.imageButton3);
+        ImageButton imageButton3 = this.findViewById(R.id.imageButton3);
         imageButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,10 +70,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void startProfileSelector(){
+        Intent intent = new Intent(this, ProfileSelector.class);
+        startActivity(intent);
+    }
+
 
     private void startTuner(){
         Intent intent = new Intent(this, TunerActivity.class);
-        intent.putExtra(this.EXTRA_INT);
+        intent.putExtra(this.EXTRA_INT, 0);
         startActivity(intent);
     }
 

@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -38,14 +39,16 @@ public class ProfileSelector extends AppCompatActivity {
         String[] arrayProfileNames = profileNames.toArray(new String[profileNames.size()]);
 
         final ArrayAdapter<String> stringArrayAdapter;
+        ArrayList<String> lst1 = new ArrayList<String>(Arrays.asList(new String[]{"---"}));
         stringArrayAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_dropdown_item,
-                new String[]{"---"});
+                lst1);
 
         final ArrayAdapter<String> profileArrayAdapter;
+        ArrayList<String> lst2 = new ArrayList<String>(Arrays.asList(arrayProfileNames));
         profileArrayAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_dropdown_item,
-                arrayProfileNames);
+                lst2);
         profileSpinner.setAdapter(profileArrayAdapter);
         profileSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
