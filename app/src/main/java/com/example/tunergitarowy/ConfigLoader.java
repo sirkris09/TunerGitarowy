@@ -4,13 +4,16 @@ import android.content.Context;
 import android.util.Log;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.lang.String;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Arrays;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ConfigLoader {
@@ -24,12 +27,23 @@ public class ConfigLoader {
 
         if (!config.exists()) {
             InputStream inputStream = context.getResources().openRawResource(R.raw.config);
-            String jsonString = loadJSONFromAsset(inputStream);
+            OutputStream outputStream = new FileOutputStream(config);
+            copyConfigFromResource(inputStream,outputStream);
+            inputStream.close();
+            outputStream.close();
+        }
+
+        InputStream configInputStream = new FileInputStream(config);
+        String jsonString = loadJSONFromAsset(configInputStream);
+        loadProfilesFromJSON(jsonString);
+    }
+
+    private static void loadProfilesFromJSON(String jsonString){
+        try {
             JSONObject json = new JSONObject(jsonString);
 
             JSONArray profilesArray = json.getJSONArray("profiles");
-            for ( int i = 0; i < profilesArray.length(); i++)
-            {
+            for (int i = 0; i < profilesArray.length(); i++) {
                 JSONObject jsonObject = profilesArray.getJSONObject(i);
 
                 String profileName = jsonObject.getString("name");
@@ -43,9 +57,27 @@ public class ConfigLoader {
                 }
                 Log.i(LOG_TAG, "Pitch indexes: " + Arrays.toString(indexes));
             }
-            Log.i(LOG_TAG,"Config loaded: " + jsonString);
+            Log.i(LOG_TAG, "Config loaded: " + jsonString);
+        } catch (JSONException je){
+            je.printStackTrace();
         }
     }
+
+    private static void copyConfigFromResource(InputStream in, OutputStream out){
+        try {
+            int size = in.available();
+            byte[] buffer = new byte[size]; // or other buffer size
+            int read;
+
+            in.read(buffer);
+            out.write(buffer);
+
+            out.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     private static String loadJSONFromAsset(InputStream is) {
