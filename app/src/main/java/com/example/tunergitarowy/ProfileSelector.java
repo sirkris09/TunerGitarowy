@@ -33,8 +33,8 @@ public class ProfileSelector extends AppCompatActivity {
 
         Set<String> profileNames = ((TunerApp) this.getApplication()).getProfiles().keySet();
 
-        final Spinner profileSpinner = (Spinner) findViewById(R.id.spinner);
-        final Spinner stringSpinner = (Spinner) findViewById(R.id.spinner);
+        final Spinner profileSpinner = (Spinner) findViewById(R.id.spinner2);
+        final Spinner stringSpinner = (Spinner) findViewById(R.id.spinner3);
         String[] arrayProfileNames = profileNames.toArray(new String[profileNames.size()]);
 
         final ArrayAdapter<String> stringArrayAdapter;
@@ -88,7 +88,7 @@ public class ProfileSelector extends AppCompatActivity {
 
         Button tunerButton = this.findViewById(R.id.tunerButton);
 
-        tunerButton = this.findViewById(R.id.record);
+        tunerButton = this.findViewById(R.id.tunerButton);
         tunerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -29,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        try {
+            ConfigLoader.loadConfig(this.getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
