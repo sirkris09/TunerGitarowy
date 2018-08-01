@@ -103,5 +103,6 @@ public class ConfigLoader {
 
     private static void saveProfilesToJSON(){
         //TODO: todooo toodooo tooodooo tooodoo todoooooooooooooooooooo
+        //TODO: https://www.youtube.com/watch?v=9OPc7MRm4Y8
     }
 }
