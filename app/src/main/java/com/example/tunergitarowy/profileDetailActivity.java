@@ -29,6 +29,7 @@ public class profileDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TODO: floating button dodaje strune?
                 Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -39,7 +40,9 @@ public class profileDetailActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
+        // TODO: tutaj powinna byc edycja profili
+        // TODO: cholera wie jak to zrobic... :)
+        // TODO: znaczy kilka spinnerow i bedzie dobrze
         // savedInstanceState is non-null when there is fragment state
         // saved from previous configurations of this activity
         // (e.g. when rotating the screen from portrait to landscape).
@@ -73,6 +76,8 @@ public class profileDetailActivity extends AppCompatActivity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
+            // TODO: Zapisz zmiany przy wychodzeniu?
+            // TODO: Moze osobny jeszcze button do tego?
             navigateUpTo(new Intent(this, profileListActivity.class));
             return true;
         }

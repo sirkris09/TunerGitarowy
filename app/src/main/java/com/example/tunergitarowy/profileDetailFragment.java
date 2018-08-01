@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.tunergitarowy.dummy.DummyContent;
 
+// TODO: a wlasciwie nie-TODO, ta czesc dziala tylko na tabletach (szeroki ekran) mozna olac?
 /**
  * A fragment representing a single profile detail screen.
  * This fragment is either contained in a {@link profileListActivity}

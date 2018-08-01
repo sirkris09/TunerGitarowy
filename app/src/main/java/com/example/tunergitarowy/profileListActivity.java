@@ -47,7 +47,9 @@ public class profileListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                // TODO:: Dodac profil do listy w recyclerView (setAdapter)
+                // Na razie nie ma profili :(
+                Snackbar.make(view, "Utworzono nowy profil", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -66,6 +68,7 @@ public class profileListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
+        //TODO: podmienic DummyContent na liste profili w TunerApp
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, mTwoPane));
     }
 
@@ -78,7 +81,9 @@ public class profileListActivity extends AppCompatActivity {
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // TODO: przeportowac to na class Profiles z TunerApp
                 DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
+                //TODO: Olac TwoPane?
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
                     arguments.putString(profileDetailFragment.ARG_ITEM_ID, item.id);
@@ -130,6 +135,7 @@ public class profileListActivity extends AppCompatActivity {
             final TextView mIdView;
             final TextView mContentView;
 
+            // TODO: To jak lista wyglada? Nie potrzebujemy w sumie iD (No i nie przechowujemy)
             ViewHolder(View view) {
                 super(view);
                 mIdView = (TextView) view.findViewById(R.id.id_text);
