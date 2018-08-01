@@ -104,7 +104,7 @@ public class TunerView extends View {
         } else if (100*freq<range*95) {
             gauge1.setValue(0);
         } else {
-            gauge1.setValue(50+(1000-((int)((freq/range)*1000))));
+            gauge1.setValue(50-(1000-((int)((freq/range)*1000)))); // YAY!
             //gauge1.setValue(50);
         }
 

@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         imageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               //open ProfileEditorActivity
+               startProfileEdit();
             }
         });
 
@@ -79,6 +79,11 @@ public class MainActivity extends AppCompatActivity {
     private void startTuner(){
         Intent intent = new Intent(this, TunerActivity.class);
         intent.putExtra(this.EXTRA_INT, 0);
+        startActivity(intent);
+    }
+
+    private void startProfileEdit(){
+        Intent intent = new Intent(this, profileListActivity.class);
         startActivity(intent);
     }
 
