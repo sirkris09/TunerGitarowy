@@ -78,15 +78,13 @@ public class TunerView extends View {
         super.onDraw(canvas);
 
         CustomGauge gauge1 = ((TunerActivity) getContext()).findViewById(R.id.gauge1);
-
+        TextView gaugeText = ((TunerActivity) getContext()).findViewById(R.id.textView1);
 
 
 
         float range = Utils.pitchIndexToFrequency(pitchIndex);
         gauge1.setStartValue((int)(range*95));
         gauge1.setEndValue((int)(range*105));
-        text1 = findViewById(R.id.textView1);
-        text1.setText((pitchLetterFromIndex(pitchIndex)));
         canvas.drawText(String.format("Targeted range: %f ", range), 20,100, this.mTextPaint);
         canvas.drawText(String.format("HZ: %f", freq), 20, 220, this.mTextPaint);
         if (freq  > range ){
@@ -108,6 +106,8 @@ public class TunerView extends View {
         } else {
             gauge1.setValue((int) (100*freq));
         }
+
+        gaugeText.setText(pitchLetterFromIndex(pitchIndex));
 
     }
 
