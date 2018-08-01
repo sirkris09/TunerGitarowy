@@ -9,6 +9,7 @@ import android.util.Log;
 import android.graphics.Paint;
 import android.text.TextPaint;
 import android.text.TextUtils;
+import android.widget.TextView;
 
 import java.util.List;
 import com.example.tunergitarowy.Utils;
@@ -20,6 +21,8 @@ import java.util.Arrays;
 
 import pl.pawelkleczkowski.customgauge.CustomGauge;
 
+import static com.example.tunergitarowy.Utils.pitchLetterFromIndex;
+
 public class TunerView extends View {
     private static final int window_size=32768;
 
@@ -29,6 +32,7 @@ public class TunerView extends View {
     private FFT fft;
     private double freq;
     private int maxIndex;
+    private TextView text1;
 
     private float[] ranges = new float [] {329.63f,246.94f,196.00f,146.83f,110.00f,82.41f};
 
@@ -73,13 +77,16 @@ public class TunerView extends View {
         // TODO: Rysowanie interfejsu
         super.onDraw(canvas);
 
-        CustomGauge gauge1 = (CustomGauge) ((TunerActivity) getContext()).findViewById(R.id.gauge1);
+        CustomGauge gauge1 = ((TunerActivity) getContext()).findViewById(R.id.gauge1);
 
-        gauge1.setEndValue(1000);
+
 
 
         float range = Utils.pitchIndexToFrequency(pitchIndex);
-
+        gauge1.setStartValue((int)(range*95));
+        gauge1.setEndValue((int)(range*105));
+        text1 = findViewById(R.id.textView1);
+        text1.setText((pitchLetterFromIndex(pitchIndex)));
         canvas.drawText(String.format("Targeted range: %f ", range), 20,100, this.mTextPaint);
         canvas.drawText(String.format("HZ: %f", freq), 20, 220, this.mTextPaint);
         if (freq  > range ){
@@ -93,7 +100,14 @@ public class TunerView extends View {
         }else{
             canvas.drawCircle(40, 320, 25, this.mCircleBadPaint);
         }
-        gauge1.setValue((int) freq);
+
+        if (100*freq>range*105) {
+            gauge1.setValue((int)(range*105));
+        } else if (100*freq<range*95) {
+            gauge1.setValue((int)(range*95));
+        } else {
+            gauge1.setValue((int) (100*freq));
+        }
 
     }
 
