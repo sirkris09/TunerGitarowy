@@ -83,8 +83,8 @@ public class TunerView extends View {
 
 
         float range = Utils.pitchIndexToFrequency(pitchIndex);
-        gauge1.setStartValue((int)(range*95));
-        gauge1.setEndValue((int)(range*105));
+        gauge1.setStartValue(0);
+        gauge1.setEndValue((100));
         canvas.drawText(String.format("Targeted range: %f ", range), 20,100, this.mTextPaint);
         canvas.drawText(String.format("HZ: %f", freq), 20, 220, this.mTextPaint);
         if (freq  > range ){
@@ -100,11 +100,11 @@ public class TunerView extends View {
         }
 
         if (100*freq>range*105) {
-            gauge1.setValue((int)(range*105));
+            gauge1.setValue(100);
         } else if (100*freq<range*95) {
-            gauge1.setValue((int)(range*95));
+            gauge1.setValue(0);
         } else {
-            gauge1.setValue((int) (100*freq));
+            gauge1.setValue(50);
         }
 
         gaugeText.setText(pitchLetterFromIndex(pitchIndex));
