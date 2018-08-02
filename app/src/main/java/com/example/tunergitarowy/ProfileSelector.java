@@ -20,7 +20,7 @@ import java.util.Set;
 public class ProfileSelector extends AppCompatActivity {
 
     private String currProfileName;
-    private int[] currProfilePitchIndexes;
+    private ArrayList<Integer> currProfilePitchIndexes;
     private int currSelectedPitchIndex;
 
     public static final String EXTRA_INT = "com.example.tunergitarowy.INT";
@@ -32,7 +32,7 @@ public class ProfileSelector extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Set<String> profileNames = ((TunerApp) this.getApplication()).getProfiles().keySet();
+        ArrayList<String> profileNames = ((TunerApp) this.getApplication()).getProfilesNames();
 
         final Spinner profileSpinner = (Spinner) findViewById(R.id.spinner2);
         final Spinner stringSpinner = (Spinner) findViewById(R.id.spinner3);
@@ -80,7 +80,7 @@ public class ProfileSelector extends AppCompatActivity {
         stringSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                currSelectedPitchIndex = currProfilePitchIndexes[position];
+                currSelectedPitchIndex = currProfilePitchIndexes.get(position);
             }
 
             @Override
@@ -102,7 +102,7 @@ public class ProfileSelector extends AppCompatActivity {
     }
 
     protected void loadProfile (String name){
-        this.currProfilePitchIndexes = ((TunerApp) this.getApplication()).getProfiles().get(name);
+        this.currProfilePitchIndexes = ((TunerApp) this.getApplication()).findProfile(name).getTones();
         this.currProfileName = name;
     }
 
