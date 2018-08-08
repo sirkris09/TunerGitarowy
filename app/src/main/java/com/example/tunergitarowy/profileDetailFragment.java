@@ -8,9 +8,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.tunergitarowy.dummy.DummyContent;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 // TODO: a wlasciwie nie-TODO, ta czesc dziala tylko na tabletach (szeroki ekran) mozna olac?
 /**
@@ -60,12 +65,27 @@ public class profileDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.profile_detail, container, false);
+        View rootView = inflater.inflate(R.layout.profile_detail_spinners, container, false);
+        if(mItem != null) {
+            final Spinner stringSpinner = (Spinner) rootView.findViewById(R.id.stringSpinner);
+            final Spinner noteSpinner = (Spinner) rootView.findViewById(R.id.noteSpinner);
+            final Spinner octaveSpinner = (Spinner) rootView.findViewById(R.id.octaveSpinner);
+
+            final ArrayAdapter<String> stringArrayAdapter;
+
+            ArrayList<Integer> strings = this.mItem.getTones();
+
+            ArrayList<String> lst1 = new ArrayList<String>();
+            for (Integer i : strings) {
+                lst1.add(String.valueOf(i));
+            }
+            stringArrayAdapter = new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_spinner_dropdown_item, lst1);
+
+            stringSpinner.setAdapter(stringArrayAdapter);
+
+        }
 
         // Show the dummy content as text in a TextView.
-        if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.profile_detail)).setText(mItem.getName());
-        }
 
         return rootView;
     }
