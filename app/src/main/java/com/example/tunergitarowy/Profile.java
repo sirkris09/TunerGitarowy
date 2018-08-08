@@ -3,10 +3,11 @@ package com.example.tunergitarowy;
 import java.util.ArrayList;
 
 public class Profile {
+    private int id;
     private String name;
     private ArrayList<Integer> tones;
 
-    public Profile(String name) {
+    public Profile(int id, String name) {
         this.name = name;
         this.tones = new ArrayList<Integer>();
 
@@ -37,4 +38,11 @@ public class Profile {
         return this.name;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
