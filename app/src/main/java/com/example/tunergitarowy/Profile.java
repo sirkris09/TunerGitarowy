@@ -32,4 +32,9 @@ public class Profile {
         this.tones.add(tone);
     }
 
+    @Override
+    public String toString() {
+        return this.name;
+    }
+
 }
