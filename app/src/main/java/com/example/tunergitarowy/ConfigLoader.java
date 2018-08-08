@@ -10,6 +10,7 @@ import java.io.OutputStream;
 import java.lang.String;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -21,7 +22,7 @@ public class ConfigLoader {
 
     private static final String LOG_TAG = ConfigLoader.class.getSimpleName();
 
-    public static HashMap<String, int[]> loadConfig(Context context) throws Exception
+    public static ArrayList<Profile> loadConfig(Context context) throws Exception
     {
         File directory = context.getFilesDir();
         File config = new File(directory, "config.json");
@@ -39,11 +40,11 @@ public class ConfigLoader {
         return loadProfilesFromJSON(jsonString);
     }
 
-    private static HashMap<String, int[]> loadProfilesFromJSON(String jsonString){
+    private static ArrayList<Profile> loadProfilesFromJSON(String jsonString){
         try {
             JSONObject json = new JSONObject(jsonString);
 
-            HashMap<String, int[]> configMap = new HashMap<String, int[]>();
+            ArrayList<Profile> profiles = new ArrayList<Profile>();
 
             JSONArray profilesArray = json.getJSONArray("profiles");
             for (int i = 0; i < profilesArray.length(); i++) {
@@ -52,17 +53,18 @@ public class ConfigLoader {
                 String profileName = jsonObject.getString("name");
                 Log.i(LOG_TAG, "Profile name: " + profileName);
                 JSONArray pithIndexes = jsonObject.getJSONArray("pitchIndexes");
-
+                Profile profile = new Profile(profileName);
                 int[] indexes = new int[pithIndexes.length()];
 
                 for (int j = 0; j < pithIndexes.length(); ++j) {
                     indexes[j] = pithIndexes.optInt(j);
+                    profile.addTone(indexes[j]);
                 }
                 Log.i(LOG_TAG, "Pitch indexes: " + Arrays.toString(indexes));
-                configMap.put(profileName,indexes);
+                profiles.add(profile);
             }
             Log.i(LOG_TAG, "Config loaded: " + jsonString);
-            return configMap;
+            return profiles;
         } catch (JSONException je){
             je.printStackTrace();
             return null;
@@ -103,6 +105,6 @@ public class ConfigLoader {
 
     private static void saveProfilesToJSON(){
         //TODO: todooo toodooo tooodooo tooodoo todoooooooooooooooooooo
-        //TODO: https://www.youtube.com/watch?v=9OPc7MRm4Y8
+        //TODO: https://www.youtube.com/watch?v=9OPc7MRm4Y8 WFT :D
     }
 }

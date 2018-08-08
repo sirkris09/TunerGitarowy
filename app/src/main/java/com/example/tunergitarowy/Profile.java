@@ -28,7 +28,8 @@ public class Profile {
         this.tones = tones;
     }
 
-    public void addString(int tone){
+    public void addTone(int tone){
         this.tones.add(tone);
     }
+
 }
