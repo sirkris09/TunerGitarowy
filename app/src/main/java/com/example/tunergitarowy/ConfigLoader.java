@@ -53,7 +53,7 @@ public class ConfigLoader {
                 String profileName = jsonObject.getString("name");
                 Log.i(LOG_TAG, "Profile name: " + profileName);
                 JSONArray pithIndexes = jsonObject.getJSONArray("pitchIndexes");
-                Profile profile = new Profile(i, profileName);
+                Profile profile = new Profile(i+1, profileName);
                 int[] indexes = new int[pithIndexes.length()];
 
                 for (int j = 0; j < pithIndexes.length(); ++j) {

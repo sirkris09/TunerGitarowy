@@ -1,6 +1,7 @@
 package com.example.tunergitarowy;
 
 import android.app.Application;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,10 +32,11 @@ public class TunerApp extends Application{
 
     public Profile findProfile(String name) {
         for (int i = 0; i<profiles.size(); i++) {
-            if(profiles.get(i).getName() == name) {
+            if(profiles.get(i).getName().equals(name)) {
                 return profiles.get(i);
             }
         }
+        Log.i("TunerApp", name);
         return null;
     }
 

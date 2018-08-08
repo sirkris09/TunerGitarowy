@@ -59,8 +59,9 @@ public class profileListActivity extends AppCompatActivity {
             // large-screen layouts (res/values-w900dp).
             // If this view is present, then the
             // activity should be in two-pane mode.
-            mTwoPane = true;
+            //mTwoPane = true;
         }
+        mTwoPane = false;
 
         View recyclerView = findViewById(R.id.profile_list);
         assert recyclerView != null;
@@ -82,11 +83,11 @@ public class profileListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO: przeportowac to na class Profiles z TunerApp
-                DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
+                Profile item = (Profile) view.getTag();
                 //TODO: Olac TwoPane?
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
-                    arguments.putString(profileDetailFragment.ARG_ITEM_ID, item.id);
+                    arguments.putString(profileDetailFragment.ARG_ITEM_ID, item.getName());
                     profileDetailFragment fragment = new profileDetailFragment();
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()
@@ -95,7 +96,7 @@ public class profileListActivity extends AppCompatActivity {
                 } else {
                     Context context = view.getContext();
                     Intent intent = new Intent(context, profileDetailActivity.class);
-                    intent.putExtra(profileDetailFragment.ARG_ITEM_ID, item.id);
+                    intent.putExtra(profileDetailFragment.ARG_ITEM_ID, item.getName());
 
                     context.startActivity(intent);
                 }
@@ -119,7 +120,7 @@ public class profileListActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mIdView.setText(String.valueOf(mValues.get(position).getId()));
+            holder.mIdView.setText(new String(String.valueOf(mValues.get(position).getId())));
             holder.mContentView.setText(mValues.get(position).getName());
 
             holder.itemView.setTag(mValues.get(position));
