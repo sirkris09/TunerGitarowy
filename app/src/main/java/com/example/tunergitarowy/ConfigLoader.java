@@ -22,15 +22,14 @@ public class ConfigLoader {
 
     private static final String LOG_TAG = ConfigLoader.class.getSimpleName();
 
-    public static ArrayList<Profile> loadConfig(Context context) throws Exception
-    {
+    public static ArrayList<Profile> loadConfig(Context context) throws Exception {
         File directory = context.getFilesDir();
         File config = new File(directory, "config.json");
 
         if (!config.exists()) {
             InputStream inputStream = context.getResources().openRawResource(R.raw.config);
             OutputStream outputStream = new FileOutputStream(config);
-            copyConfigFromResource(inputStream,outputStream);
+            copyConfigFromResource(inputStream, outputStream);
             inputStream.close();
             outputStream.close();
         }
@@ -40,7 +39,7 @@ public class ConfigLoader {
         return loadProfilesFromJSON(jsonString);
     }
 
-    private static ArrayList<Profile> loadProfilesFromJSON(String jsonString){
+    private static ArrayList<Profile> loadProfilesFromJSON(String jsonString) {
         try {
             JSONObject json = new JSONObject(jsonString);
 
@@ -53,7 +52,7 @@ public class ConfigLoader {
                 String profileName = jsonObject.getString("name");
                 Log.i(LOG_TAG, "Profile name: " + profileName);
                 JSONArray pithIndexes = jsonObject.getJSONArray("pitchIndexes");
-                Profile profile = new Profile(i+1, profileName);
+                Profile profile = new Profile(i + 1, profileName);
                 int[] indexes = new int[pithIndexes.length()];
 
                 for (int j = 0; j < pithIndexes.length(); ++j) {
@@ -65,13 +64,13 @@ public class ConfigLoader {
             }
             Log.i(LOG_TAG, "Config loaded: " + jsonString);
             return profiles;
-        } catch (JSONException je){
+        } catch (JSONException je) {
             je.printStackTrace();
             return null;
         }
     }
 
-    private static void copyConfigFromResource(InputStream in, OutputStream out){
+    private static void copyConfigFromResource(InputStream in, OutputStream out) {
         try {
             int size = in.available();
             byte[] buffer = new byte[size]; // or other buffer size
@@ -85,7 +84,6 @@ public class ConfigLoader {
             e.printStackTrace();
         }
     }
-
 
 
     private static String loadJSONFromAsset(InputStream is) {
@@ -103,8 +101,40 @@ public class ConfigLoader {
         return json;
     }
 
-    private static void saveProfilesToJSON(){
+    public static void saveProfilesToJSON(ArrayList<Profile> profiles, Context context) {
         //TODO: todooo toodooo tooodooo tooodoo todoooooooooooooooooooo
         //TODO: https://www.youtube.com/watch?v=9OPc7MRm4Y8 WFT :D
+        String output = "{\n\"profiles\": [{\n";
+//        ArrayList<Profile> profiles = ((TunerApp) this.getApplication()).getProfiles();
+        for (int i = 0; i < profiles.size(); i++) {
+            output += ("\"name\":");
+            output += ("\"" + profiles.get(i).getName() + "\",\n");
+            output += "\"pitchIndexes\": [\n";
+
+            for (int j = 0; j < profiles.get(i).getTones().size(); j++) {
+                output += profiles.get(i).getTones().get(j);
+                if (j != profiles.get(i).getTones().size() -1) {
+                    output += ",\n";
+                } else {
+                    output += "\n]}";
+                }
+            }
+            if (i != profiles.size()-1) {
+                output += ",{\n";
+            } else {
+                output += "\n]\n}";
+            }
+        }
+        try {
+
+            byte[] buffer = output.getBytes();
+            File directory = context.getFilesDir();
+            File config = new File(directory, "config2.json");
+            OutputStream out = new FileOutputStream(config);
+            out.write(buffer);
+            out.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

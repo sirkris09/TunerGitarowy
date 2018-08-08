@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        ConfigLoader.saveProfilesToJSON(((TunerApp) this.getApplication()).getProfiles(), this.getApplicationContext());
         Log.i("MainActivity", "Settings check: " + ((TunerApp) this.getApplication()).getProfiles().toString());
 
 
