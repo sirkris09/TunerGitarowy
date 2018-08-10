@@ -34,6 +34,10 @@ public class Profile {
         this.tones.add(tone);
     }
 
+    public void changeTone(int tone, int newValue) {
+        tones.set(tone, newValue);
+    }
+
     @Override
     public String toString() {
         return this.name;

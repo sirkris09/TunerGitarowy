@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
@@ -72,6 +73,7 @@ public class profileDetailFragment extends Fragment {
             final Spinner stringSpinner = (Spinner) rootView.findViewById(R.id.stringSpinner);
             final Spinner noteSpinner = (Spinner) rootView.findViewById(R.id.noteSpinner);
             final Spinner octaveSpinner = (Spinner) rootView.findViewById(R.id.octaveSpinner);
+            final Button button = (Button) rootView.findViewById(R.id.button);
 
             final ArrayAdapter<Integer> stringArrayAdapter;
 
@@ -123,6 +125,22 @@ public class profileDetailFragment extends Fragment {
             octaveArrayAdapter = new ArrayAdapter<Integer>(rootView.getContext(), android.R.layout.simple_spinner_dropdown_item, lst3);
 
             octaveSpinner.setAdapter(octaveArrayAdapter);
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int string = stringSpinner.getId();
+                    int note = noteSpinner.getId();
+                    int octave = octaveSpinner.getId();
+                    int index;
+                    if (note < 3) {
+                        index = octave*12 + note;
+                    } else {
+                        index = (octave -1)*12 + note;
+                    }
+                    mItem.changeTone(string, index);
+                }
+            });
 
             stringSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override

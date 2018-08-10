@@ -11,6 +11,7 @@ import java.util.Set;
 public class TunerApp extends Application{
 
     // TODO:: zamienic to na List<Profiles>
+    //zrobione
     private ArrayList<Profile> profiles;
 
     public ArrayList<Profile> getProfiles() {
@@ -41,4 +42,5 @@ public class TunerApp extends Application{
     }
 
     //TODO: dodac class Profile -> klasa ktora bedzie przechowywala (String) nazwe i List<Integer> pitch indexy
+    //zrobione
 }

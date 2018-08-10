@@ -4,4 +4,5 @@
     <string name="title_activity_profile_selector">ProfileSelector</string>
     <string name="title_profile_list">profiles</string>
     <string name="title_profile_detail">profile Detail</string>
+    <string name="save_string">Save String</string>
 </resources>
