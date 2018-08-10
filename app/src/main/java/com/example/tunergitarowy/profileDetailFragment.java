@@ -8,8 +8,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.example.tunergitarowy.dummy.DummyContent;
@@ -63,7 +65,7 @@ public class profileDetailFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView (LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.profile_detail_spinners, container, false);
         if(mItem != null) {
@@ -71,22 +73,81 @@ public class profileDetailFragment extends Fragment {
             final Spinner noteSpinner = (Spinner) rootView.findViewById(R.id.noteSpinner);
             final Spinner octaveSpinner = (Spinner) rootView.findViewById(R.id.octaveSpinner);
 
-            final ArrayAdapter<String> stringArrayAdapter;
+            final ArrayAdapter<Integer> stringArrayAdapter;
 
             ArrayList<Integer> strings = this.mItem.getTones();
 
-            ArrayList<String> lst1 = new ArrayList<String>();
-            for (Integer i : strings) {
-                lst1.add(String.valueOf(i));
+            ArrayList<Integer> lst1 = new ArrayList<Integer>();
+            for (Integer i = 0; i<strings.size(); i++) {
+                lst1.add(i+1);
             }
-            stringArrayAdapter = new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_spinner_dropdown_item, lst1);
+            stringArrayAdapter = new ArrayAdapter<Integer>(rootView.getContext(), android.R.layout.simple_spinner_dropdown_item, lst1);
 
             stringSpinner.setAdapter(stringArrayAdapter);
 
+
+            final ArrayAdapter<String> noteArrayAdapter;
+
+            final ArrayList<Integer> notes = this.mItem.getTones();
+
+            ArrayList<String> lst2 = new ArrayList<>();
+            lst2.add("a");
+            lst2.add("a#");
+            lst2.add("h");
+            lst2.add("c");
+            lst2.add("c#");
+            lst2.add("d");
+            lst2.add("d#");
+            lst2.add("e");
+            lst2.add("f");
+            lst2.add("f#");
+            lst2.add("g");
+            lst2.add("g#");
+
+
+            noteArrayAdapter = new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_spinner_dropdown_item, lst2);
+
+            noteSpinner.setAdapter(noteArrayAdapter);
+
+            final ArrayAdapter<Integer> octaveArrayAdapter;
+
+            ArrayList<Integer> octaves = this.mItem.getTones();
+
+            ArrayList<Integer> lst3 = new ArrayList<Integer>();
+            lst3.add(0);
+            lst3.add(1);
+            lst3.add(2);
+            lst3.add(3);
+            lst3.add(4);
+            lst3.add(5);
+            octaveArrayAdapter = new ArrayAdapter<Integer>(rootView.getContext(), android.R.layout.simple_spinner_dropdown_item, lst3);
+
+            octaveSpinner.setAdapter(octaveArrayAdapter);
+
+            stringSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    int index = notes.get(i);
+                    int note = (index%12);
+                    int octaveNumber = ((index+9) / 12) + 1;
+
+                    noteSpinner.setSelection(note);
+                    octaveSpinner.setSelection(octaveNumber);
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
         }
 
         // Show the dummy content as text in a TextView.
 
         return rootView;
     }
+
+
 }

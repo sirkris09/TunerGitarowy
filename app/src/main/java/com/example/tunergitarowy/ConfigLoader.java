@@ -129,7 +129,7 @@ public class ConfigLoader {
 
             byte[] buffer = output.getBytes();
             File directory = context.getFilesDir();
-            File config = new File(directory, "config2.json");
+            File config = new File(directory, "config.json");
             OutputStream out = new FileOutputStream(config);
             out.write(buffer);
             out.flush();
