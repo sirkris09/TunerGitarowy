@@ -35,7 +35,7 @@ public class Profile {
     }
 
     public void changeTone(int tone, int newValue) {
-        tones.set(tone, newValue);
+        this.tones.set(tone, newValue);
     }
 
     @Override

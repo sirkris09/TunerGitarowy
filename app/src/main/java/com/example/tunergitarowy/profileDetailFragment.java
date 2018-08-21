@@ -129,14 +129,14 @@ public class profileDetailFragment extends Fragment {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int string = stringSpinner.getId();
-                    int note = noteSpinner.getId();
-                    int octave = octaveSpinner.getId();
+                    int string =(int) stringSpinner.getSelectedItemId();
+                    int note = (int) noteSpinner.getSelectedItemId();
+                    int octave = (int) octaveSpinner.getSelectedItemId();
                     int index;
                     if (note < 3) {
-                        index = octave*12 + note;
+                        index = (octave-1)*12 + note;
                     } else {
-                        index = (octave -1)*12 + note;
+                        index = (octave -2)*12 + note;
                     }
                     mItem.changeTone(string, index);
                 }
