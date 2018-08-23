@@ -44,6 +44,7 @@ public class profileDetailActivity extends AppCompatActivity {
 
                 Snackbar.make(view, "Dodano nową strunę", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                //mItem.add();
 
 
             }

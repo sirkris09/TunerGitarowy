@@ -51,6 +51,7 @@ public class profileListActivity extends AppCompatActivity {
                 // Na razie nie ma profili :(
                 Snackbar.make(view, "Utworzono nowy profil", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                //mValues.add();
             }
         });
 

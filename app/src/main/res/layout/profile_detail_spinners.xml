@@ -2,15 +2,37 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:baselineAligned="false">
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="93dp"
+        android:layout_height="82dp"
         android:layout_marginTop="@android:dimen/app_icon_size"
         android:baselineAligned="false"
-        android:text="@string/save_string" />
+        android:text="@string/zmie_warto" />
+
+    <Spinner
+        android:id="@+id/stringSpinner"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@android:dimen/app_icon_size"
+        android:layout_weight="1" />
+
+    <Spinner
+        android:id="@+id/noteSpinner"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@android:dimen/app_icon_size"
+        android:layout_weight="1" />
+
+    <Spinner
+        android:id="@+id/octaveSpinner"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@android:dimen/app_icon_size"
+        android:layout_weight="1" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab2"
@@ -20,29 +42,9 @@
         android:layout_margin="@dimen/fab_margin"
         android:layout_weight="1"
         android:baselineAligned="false"
+        app:backgroundTint="@android:drawable/ic_input_add"
         app:layout_anchor="@+id/profile_detail_container"
         app:layout_anchorGravity="top|end"
         app:srcCompat="@android:drawable/stat_notify_chat" />
-
-    <Spinner
-        android:id="@+id/stringSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@android:dimen/app_icon_size"
-        android:layout_weight="1" />
-
-    <Spinner
-        android:id="@+id/noteSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@android:dimen/app_icon_size"
-        android:layout_weight="1" />
-
-    <Spinner
-        android:id="@+id/octaveSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@android:dimen/app_icon_size"
-        android:layout_weight="1" />
 
 </LinearLayout>

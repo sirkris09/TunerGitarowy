@@ -141,8 +141,6 @@ public class profileDetailFragment extends Fragment {
             ArrayList<Integer> octaves = this.mItem.getTones();
 
             ArrayList<Integer> lst3 = new ArrayList<Integer>();
-            lst3.add(0);
-            lst3.add(1);
             lst3.add(2);
             lst3.add(3);
             lst3.add(4);
@@ -156,12 +154,12 @@ public class profileDetailFragment extends Fragment {
                 public void onClick(View v) {
                     int string =(int) stringSpinner.getSelectedItemId();
                     int note = (int) noteSpinner.getSelectedItemId();
-                    int octave = (int) octaveSpinner.getSelectedItemId();
+                    int octave = (int) octaveSpinner.getSelectedItemId() + 2;
                     int index;
                     if (note < 3) {
-                        index = (octave-1)*12 + note;
+                        index = (octave - 1)*12 + note;
                     } else {
-                        index = (octave -2)*12 + note;
+                        index = (octave - 2)*12 + note;
                     }
                     mItem.changeTone(string, index);
                 }
@@ -176,7 +174,7 @@ public class profileDetailFragment extends Fragment {
                     int octaveNumber = ((index+9) / 12) + 1;
 
                     noteSpinner.setSelection(note);
-                    octaveSpinner.setSelection(octaveNumber);
+                    octaveSpinner.setSelection(octaveNumber-2);
 
                 }
 
