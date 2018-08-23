@@ -5,11 +5,11 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="93dp"
+        android:layout_height="82dp"
         android:layout_marginTop="@android:dimen/app_icon_size"
         android:baselineAligned="false"
-        android:text="@string/save_string" />
+        android:text="@string/zmie_warto" />
 
     <Spinner
         android:id="@+id/stringSpinner"

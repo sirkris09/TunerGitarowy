@@ -36,6 +36,7 @@ public class profileDetailActivity extends AppCompatActivity {
                 //TODO: floating button dodaje strune?
                 Snackbar.make(view, "Dodano nową strunę", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                //mItem.add();
 
             }
         });
