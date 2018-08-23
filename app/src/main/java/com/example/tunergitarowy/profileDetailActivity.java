@@ -33,23 +33,6 @@ public class profileDetailActivity extends AppCompatActivity {
 
         final Spinner stringSpinner = (Spinner) findViewById(R.id.stringSpinner);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO: floating button dodaje strune?
-
-
-
-
-                Snackbar.make(view, "Dodano nową strunę", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                //mItem.add();
-
-
-            }
-        });
-
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
