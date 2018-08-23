@@ -3,6 +3,8 @@ package com.example.tunergitarowy;
 import android.app.Activity;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -69,6 +71,18 @@ public class profileDetailFragment extends Fragment {
     public View onCreateView (LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.profile_detail_spinners, container, false);
+
+        FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab2);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO: floating button dodaje strune?
+                mItem.addTone(1);
+                Snackbar.make(view, "Dodano nową strunę", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
         if(mItem != null) {
             final Spinner stringSpinner = (Spinner) rootView.findViewById(R.id.stringSpinner);
             final Spinner noteSpinner = (Spinner) rootView.findViewById(R.id.noteSpinner);
