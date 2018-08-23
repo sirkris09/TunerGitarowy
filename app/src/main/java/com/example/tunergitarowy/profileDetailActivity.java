@@ -1,6 +1,7 @@
 package com.example.tunergitarowy;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
+import android.widget.Spinner;
 
 /**
  * An activity representing a single profile detail screen. This
@@ -20,6 +22,7 @@ import android.view.MenuItem;
  */
 public class profileDetailActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,14 +31,20 @@ public class profileDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
+        final Spinner stringSpinner = (Spinner) findViewById(R.id.stringSpinner);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO: floating button dodaje strune?
+
+
+
+
                 Snackbar.make(view, "Dodano nową strunę", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
 
             }
         });
