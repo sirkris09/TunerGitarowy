@@ -71,6 +71,9 @@ public class profileDetailFragment extends Fragment {
     public View onCreateView (LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.profile_detail_spinners, container, false);
+        final Spinner stringSpinner = (Spinner) rootView.findViewById(R.id.stringSpinner);
+        final Spinner noteSpinner = (Spinner) rootView.findViewById(R.id.noteSpinner);
+        final Spinner octaveSpinner = (Spinner) rootView.findViewById(R.id.octaveSpinner);
 
         FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab2);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -78,15 +81,23 @@ public class profileDetailFragment extends Fragment {
             public void onClick(View view) {
                 //TODO: floating button dodaje strune?
                 mItem.addTone(1);
+                final ArrayAdapter<Integer> stringArrayAdapter;
+
+                ArrayList<Integer> strings = mItem.getTones();
+
+                ArrayList<Integer> lst1 = new ArrayList<Integer>();
+                for (Integer i = 0; i<strings.size(); i++) {
+                    lst1.add(i+1);
+                }
+                stringArrayAdapter = new ArrayAdapter<Integer>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, lst1);
+
+                stringSpinner.setAdapter(stringArrayAdapter);
                 Snackbar.make(view, "Dodano nową strunę", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
 
         if(mItem != null) {
-            final Spinner stringSpinner = (Spinner) rootView.findViewById(R.id.stringSpinner);
-            final Spinner noteSpinner = (Spinner) rootView.findViewById(R.id.noteSpinner);
-            final Spinner octaveSpinner = (Spinner) rootView.findViewById(R.id.octaveSpinner);
             final Button button = (Button) rootView.findViewById(R.id.button);
 
             final ArrayAdapter<Integer> stringArrayAdapter;
