@@ -9,6 +9,7 @@ import android.util.Log;
 import android.graphics.Paint;
 import android.text.TextPaint;
 import android.text.TextUtils;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
@@ -77,6 +78,8 @@ public class TunerView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         // TODO: Rysowanie interfejsu
+
+
         super.onDraw(canvas);
 
         CustomGauge gauge1 = ((TunerActivity) getContext()).findViewById(R.id.gauge1);
@@ -84,33 +87,50 @@ public class TunerView extends View {
 
 
         float range = Utils.pitchIndexToFrequency(pitchIndex);
-        gauge1.setStartValue(0);
-        gauge1.setEndValue((100));
-        canvas.drawText(String.format("Targeted range: %f ", range), 20, 100, this.mTextPaint);
-        canvas.drawText(String.format("HZ: %f", freq), 20, 220, this.mTextPaint);
+        if (pitchIndex == 0) {
+            double foundFrequency;
+            final ArrayList<Double> frequencies = new ArrayList<>();
+            Button button3 = findViewById(R.id.button3);
 
+            button3.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    //frequencies.add(freq);
 
-        if (freq < range * 1.05 && freq > range * 0.95) {
-            canvas.drawCircle(40, 320, 25, this.mCircleGoodPaint);
+                }
+            } );
+
+           // int foundIndex =
+          //  gaugeText = Utils.pitchLetterFromIndex(foundIndex);
+
         } else {
-            canvas.drawCircle(40, 320, 25, this.mCircleBadPaint);
-            if (freq > range) {
-                canvas.drawText(String.format("Frequency too high"), 20, 450, this.mTextPaint);
+            gauge1.setStartValue(0);
+            gauge1.setEndValue((100));
+            canvas.drawText(String.format("Targeted range: %f ", range), 20, 300, this.mTextPaint);
+            canvas.drawText(String.format("HZ: %f", freq), 20, 420, this.mTextPaint);
+
+
+            if (freq < range * 1.05 && freq > range * 0.95) {
+                canvas.drawCircle(40, 470, 25, this.mCircleGoodPaint);
             } else {
-                canvas.drawText(String.format("Frequency too low"), 20, 450, this.mTextPaint);
+                canvas.drawCircle(40, 470, 25, this.mCircleBadPaint);
+                if (freq > range) {
+                    canvas.drawText(String.format("Frequency too high"), 20, 550, this.mTextPaint);
+                } else {
+                    canvas.drawText(String.format("Frequency too low"), 20, 550, this.mTextPaint);
+                }
             }
-        }
 
-        if (100 * freq > range * 105) {
-            gauge1.setValue(100);
-        } else if (100 * freq < range * 95) {
-            gauge1.setValue(0);
-        } else {
-            gauge1.setValue(50 - (1000 - ((int) ((freq / range) * 1000)))); // YAY!
-            //gauge1.setValue(50);
-        }
+            if (100 * freq > range * 105) {
+                gauge1.setValue(100);
+            } else if (100 * freq < range * 95) {
+                gauge1.setValue(0);
+            } else {
+                gauge1.setValue(50 - (1000 - ((int) ((freq / range) * 1000)))); // YAY!
+            }
 
-        gaugeText.setText(pitchLetterFromIndex(pitchIndex));
+            gaugeText.setText(pitchLetterFromIndex(pitchIndex));
+        }
 
     }
 
@@ -118,31 +138,13 @@ public class TunerView extends View {
         this.pitchIndex = pitchIndex;
     }
 
-    private void onSampleChange() {
-        // DONE!
+    private void onSampleChange(short[] data) {
+
         // TODO przenieść do osobnej klasy
-        short[] signal_out = new short[window_size];
-        double[] spectrum = new double[window_size];
-        double[] hps = new double[window_size];
-        Utils.HanningWindow(samples, signal_out, 0, window_size);
-        double[] doubles = Utils.copyFromShortArray(signal_out);
-        fft.fft(doubles, spectrum);
-
-        for (int i = 0; i < spectrum.length; i++) {
-            doubles[i] = Math.abs(spectrum[i]);
-        }
-        Utils.calcHarmonicProductSpectrum(doubles, hps, 1);
-        int maxIndex = 0;
-        for (int i = 1; i < hps.length; i++) {
-            if (hps[maxIndex] < hps[i])
-                maxIndex = i;
-        }
-
-        double freq = ((double) maxIndex / (double) samples.length) * 44100;
+        // done
+        freq = HarmonicProductSpectrum.CalculateHPS(data);
 
         Log.i(LOG_TAG, String.format("maxIndex: %d, HZ: %f", maxIndex, freq));
-        this.freq = freq;
-        this.maxIndex = maxIndex;
         postInvalidate();
     }
 
@@ -153,6 +155,6 @@ public class TunerView extends View {
             return;
         }
         System.arraycopy(data, 0, samples, 0, window_size);
-        onSampleChange();
+        onSampleChange(data);
     }
 }
