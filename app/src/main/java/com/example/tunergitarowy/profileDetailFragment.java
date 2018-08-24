@@ -75,12 +75,12 @@ public class profileDetailFragment extends Fragment {
         final Spinner noteSpinner = (Spinner) rootView.findViewById(R.id.noteSpinner);
         final Spinner octaveSpinner = (Spinner) rootView.findViewById(R.id.octaveSpinner);
 
-        FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.floatingActionButton);
+        Button fab = (Button) rootView.findViewById(R.id.button1);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: floating button dodaje strune?
-                mItem.addTone(1);
+                //TODO: floating button dodaje strune
+                mItem.addTone(3);
                 final ArrayAdapter<Integer> stringArrayAdapter;
 
                 ArrayList<Integer> strings = mItem.getTones();
@@ -93,6 +93,30 @@ public class profileDetailFragment extends Fragment {
 
                 stringSpinner.setAdapter(stringArrayAdapter);
                 Snackbar.make(view, "Dodano nową strunę", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        Button fab1 = (Button) rootView.findViewById(R.id.button2);
+        fab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO: floating button usuwa strune
+                //mItem.addTone(3);
+                int string =(int) stringSpinner.getSelectedItemId();
+                mItem.getTones().remove(string);
+                final ArrayAdapter<Integer> stringArrayAdapter;
+
+                ArrayList<Integer> strings = mItem.getTones();
+
+                ArrayList<Integer> lst1 = new ArrayList<Integer>();
+                for (Integer i = 0; i<strings.size(); i++) {
+                    lst1.add(i+1);
+                }
+                stringArrayAdapter = new ArrayAdapter<Integer>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, lst1);
+
+                stringSpinner.setAdapter(stringArrayAdapter);
+                Snackbar.make(view, "Usunięto strunę " + (string + 1), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
