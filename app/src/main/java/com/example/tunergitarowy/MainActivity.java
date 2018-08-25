@@ -72,6 +72,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onPause() {
+        try {
+            ConfigLoader.saveProfilesToJSON(((TunerApp) this.getApplication()).getProfiles(),this.getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        super.onPause();
+    }
+
     private void startProfileSelector(){
         Intent intent = new Intent(this, ProfileSelector.class);
         startActivity(intent);

@@ -31,6 +31,14 @@ public class TunerApp extends Application{
         return profilesNames;
     }
 
+    public void addProfile(Profile profile){
+        this.profiles.add(profile);
+    }
+
+    public int getProfileListSize(){
+        return this.profiles.size();
+    }
+
     public Profile findProfile(String name) {
         for (int i = 0; i<profiles.size(); i++) {
             if(profiles.get(i).getName().equals(name)) {

@@ -30,6 +30,7 @@ public class TunerView extends View {
 
     private static final String LOG_TAG = RecordingThread.class.getSimpleName();
 
+    private HarmonicProductSpectrum hps;
     private short[] samples;
     private FFT fft;
     private double freq;
@@ -61,7 +62,7 @@ public class TunerView extends View {
     }
 
     public void init(Context context) {
-        fft = new FFT(window_size);
+        hps = new HarmonicProductSpectrum();
         samples = new short[window_size];
         mTextPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
         mTextPaint.setColor(ContextCompat.getColor(context, R.color.colorPrimary));
@@ -84,54 +85,37 @@ public class TunerView extends View {
 
         CustomGauge gauge1 = ((TunerActivity) getContext()).findViewById(R.id.gauge1);
         TextView gaugeText = ((TunerActivity) getContext()).findViewById(R.id.textView1);
+        Button button3 = ((TunerActivity) getContext()).findViewById(R.id.button3);
 
 
         float range = Utils.pitchIndexToFrequency(pitchIndex);
-        if (pitchIndex == 0) {
-            double foundFrequency;
-            final ArrayList<Double> frequencies = new ArrayList<>();
-            Button button3 = findViewById(R.id.button3);
+        button3.setVisibility(INVISIBLE);
+        gauge1.setStartValue(0);
+        gauge1.setEndValue((100));
+        canvas.drawText(String.format("Targeted range: %f ", range), 20, 300, this.mTextPaint);
+        canvas.drawText(String.format("HZ: %f", freq), 20, 420, this.mTextPaint);
 
-            button3.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view){
-                    //frequencies.add(freq);
 
-                }
-            } );
-
-           // int foundIndex =
-          //  gaugeText = Utils.pitchLetterFromIndex(foundIndex);
-
+        if (freq < range * 1.05 && freq > range * 0.95) {
+            canvas.drawCircle(40, 470, 25, this.mCircleGoodPaint);
         } else {
-            gauge1.setStartValue(0);
-            gauge1.setEndValue((100));
-            canvas.drawText(String.format("Targeted range: %f ", range), 20, 300, this.mTextPaint);
-            canvas.drawText(String.format("HZ: %f", freq), 20, 420, this.mTextPaint);
-
-
-            if (freq < range * 1.05 && freq > range * 0.95) {
-                canvas.drawCircle(40, 470, 25, this.mCircleGoodPaint);
+            canvas.drawCircle(40, 470, 25, this.mCircleBadPaint);
+            if (freq > range) {
+                canvas.drawText(String.format("Frequency too high"), 20, 550, this.mTextPaint);
             } else {
-                canvas.drawCircle(40, 470, 25, this.mCircleBadPaint);
-                if (freq > range) {
-                    canvas.drawText(String.format("Frequency too high"), 20, 550, this.mTextPaint);
-                } else {
-                    canvas.drawText(String.format("Frequency too low"), 20, 550, this.mTextPaint);
-                }
+                canvas.drawText(String.format("Frequency too low"), 20, 550, this.mTextPaint);
             }
-
-            if (100 * freq > range * 105) {
-                gauge1.setValue(100);
-            } else if (100 * freq < range * 95) {
-                gauge1.setValue(0);
-            } else {
-                gauge1.setValue(50 - (1000 - ((int) ((freq / range) * 1000)))); // YAY!
-            }
-
-            gaugeText.setText(pitchLetterFromIndex(pitchIndex));
         }
 
+        if (100 * freq > range * 105) {
+            gauge1.setValue(100);
+        } else if (100 * freq < range * 95) {
+            gauge1.setValue(0);
+        } else {
+            gauge1.setValue(50 - (1000 - ((int) ((freq / range) * 1000)))); // YAY!
+        }
+
+        gaugeText.setText(Utils.pitchLetterFromIndex(Utils.frequencyToPitchIndex((float) freq)));
     }
 
     public void setPitchIndex(int pitchIndex) {
@@ -142,7 +126,7 @@ public class TunerView extends View {
 
         // TODO przenieść do osobnej klasy
         // done
-        freq = HarmonicProductSpectrum.CalculateHPS(data);
+        freq = hps.CalculateHPS(data);
 
         Log.i(LOG_TAG, String.format("maxIndex: %d, HZ: %f", maxIndex, freq));
         postInvalidate();

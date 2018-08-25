@@ -6,12 +6,14 @@ import android.util.Log;
 public final class HarmonicProductSpectrum {
     private static final int window_size = 32768;
     private int maxIndex;
+    private FFT fft;
 
+    public HarmonicProductSpectrum(){
+        this.fft = new FFT(window_size);
+    }
 
-    public static double CalculateHPS(short[] data) {
+    public double CalculateHPS(short[] data) {
         short[] samples;
-        FFT fft;
-        fft = new FFT(window_size);
         samples = data;
         short[] signal_out = new short[window_size];
         double[] spectrum = new double[window_size];
