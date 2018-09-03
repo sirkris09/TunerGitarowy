@@ -37,13 +37,12 @@ public class profileDetailFragment extends Fragment {
     public static final String ARG_ITEM_ID = "item_id";
 
     /**
-     * The dummy content this fragment is presenting.
+     * Obiekt wykorzystywany przez fragment
      */
     private Profile mItem;
 
     /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
+     * Konstruktor inicjalizujący fragment
      */
     public profileDetailFragment() {
     }
@@ -79,7 +78,7 @@ public class profileDetailFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: floating button dodaje strune
+                //TODO: button dodaje strune
                 mItem.addTone(3);
                 final ArrayAdapter<Integer> stringArrayAdapter;
 
@@ -101,8 +100,7 @@ public class profileDetailFragment extends Fragment {
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: floating button usuwa strune
-                //mItem.addTone(3);
+                //TODO: button usuwa strune
                 int string =(int) stringSpinner.getSelectedItemId();
                 mItem.getTones().remove(string);
                 final ArrayAdapter<Integer> stringArrayAdapter;

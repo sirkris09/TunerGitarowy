@@ -102,8 +102,6 @@ public class ConfigLoader {
     }
 
     public static void saveProfilesToJSON(ArrayList<Profile> profiles, Context context) {
-        //TODO: todooo toodooo tooodooo tooodoo todoooooooooooooooooooo
-        //TODO: https://www.youtube.com/watch?v=9OPc7MRm4Y8 WFT :D
         String output = "{\n\"profiles\": [{\n";
 //        ArrayList<Profile> profiles = ((TunerApp) this.getApplication()).getProfiles();
         for (int i = 0; i < profiles.size(); i++) {
