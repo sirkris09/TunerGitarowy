@@ -114,8 +114,12 @@ public class TunerView extends View {
         } else {
             gauge1.setValue(50 - (1000 - ((int) ((freq / range) * 1000)))); // YAY!
         }
-
-        gaugeText.setText(Utils.pitchLetterFromIndex(Utils.frequencyToPitchIndex((float) freq)));
+        if (pitchIndex == 0) {
+            gaugeText.setText(Utils.pitchLetterFromIndex(Utils.frequencyToPitchIndex((float) freq)));
+        }
+        else{
+                gaugeText.setText(pitchLetterFromIndex(pitchIndex));
+            }
     }
 
     public void setPitchIndex(int pitchIndex) {

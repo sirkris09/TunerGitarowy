@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.text.InputType;
+import android.text.method.TextKeyListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,12 +66,19 @@ public class profileListActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(profileListActivity.this);
-                builder.setTitle("Title");
+                builder.setTitle("Nazwa profilu");
 // Set up the input
+
                 final EditText input = new EditText(getApplicationContext());
+
 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
                 input.setInputType(InputType.TYPE_CLASS_TEXT);
                 builder.setView(input);
+                
+
+                //TextViewCompat.setTextAppearance((input.getText().toString()), android.R.style.TextAppearance_Medium);
+
+                //R.style.AppTheme
 
 // Set up the buttons
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
