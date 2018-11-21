@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -13,33 +12,20 @@ import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.text.InputType;
-import android.text.method.TextKeyListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.example.tunergitarowy.dummy.DummyContent;
-
 import java.util.List;
 
-/**
- * An activity representing a list of profiles. This activity
- * has different presentations for handset and tablet-size devices. On
- * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link profileDetailActivity} representing
- * item details. On tablets, the activity presents the list of items and
- * item details side-by-side using two vertical panes.
- */
+
 public class profileListActivity extends AppCompatActivity {
 
     /**
-     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-     * device.
+     * zmienna mTwoPane, przechowująca informację czy aplikacja działa na tablecie
      */
     private boolean mTwoPane;
-    private String newProfileName = "";
     private View recyclerView;
 
     @Override
@@ -61,9 +47,7 @@ public class profileListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO:: Dodac profil do listy w recyclerView (setAdapter)
-                // Na razie nie ma profili :(
-                Snackbar.make(view, "Utworzono nowy profil", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(profileListActivity.this);
                 builder.setTitle("Nazwa profilu");
@@ -87,9 +71,14 @@ public class profileListActivity extends AppCompatActivity {
                         Profile newProfile = new Profile(profile_no+1, input.getText().toString());
                         ((TunerApp) getApplication()).addProfile(newProfile);
                         setupRecyclerView((RecyclerView) recyclerView);
+
                     }
+
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+
+
+                builder.setNegativeButton("Anuluj", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -97,6 +86,8 @@ public class profileListActivity extends AppCompatActivity {
                 });
 
                 builder.show();
+               // Snackbar.make(view, "Utworzono nowy profil", Snackbar.LENGTH_LONG)
+               //         .setAction("Action", null).show();
             }
         });
 

@@ -10,8 +10,8 @@
         android:id="@+id/button"
         android:layout_width="100dp"
         android:layout_height="78dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:baselineAligned="false"
         android:text="@string/zmie_warto"
@@ -26,9 +26,11 @@
         android:layout_height="22dp"
         android:layout_marginBottom="400dp"
         android:layout_marginEnd="50dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/noteSpinner"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -58,8 +60,8 @@
     <Button
         android:id="@+id/button1"
         android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="78dp"
+        android:layout_marginBottom="32dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:text="Dodaj Strunę"
@@ -71,10 +73,10 @@
     <Button
         android:id="@+id/button2"
         android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="78dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:text="Usuń strunę"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -86,8 +88,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -98,33 +100,36 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/stringSpinner"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.363" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Ton:"
         app:layout_constraintBottom_toTopOf="@+id/noteSpinner"
         app:layout_constraintEnd_toEndOf="@+id/noteSpinner"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="@+id/noteSpinner"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.363" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Oktawa:"
         app:layout_constraintBottom_toTopOf="@+id/octaveSpinner"
         app:layout_constraintEnd_toEndOf="@+id/octaveSpinner"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/octaveSpinner"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

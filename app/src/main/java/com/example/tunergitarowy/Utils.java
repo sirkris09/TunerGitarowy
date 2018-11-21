@@ -1,8 +1,5 @@
 package com.example.tunergitarowy;
 
-import android.util.Log;
-import java.util.List;
-
 public class Utils {
     private static final String LOG_TAG = RecordingThread.class.getSimpleName();
     private static final float CONCERT_PITCH = 440.0f;
@@ -33,19 +30,19 @@ public class Utils {
         String letters;
         int octaveNumber = ((index+9) / 12) + 1;
         switch(index%12) {
-            case 0:  letters = "a" + octaveNumber; break;
-            case 1:  letters = "a" + octaveNumber + "#"; break;
-            case 2:  letters = "h" + octaveNumber; break;
-            case 3:  letters = "c" + octaveNumber; break;
-            case 4:  letters = "c" + octaveNumber + "#"; break;
-            case 5:  letters = "d" + octaveNumber; break;
-            case 6:  letters = "d" + octaveNumber + "#"; break;
-            case 7:  letters = "e" + octaveNumber; break;
-            case 8:  letters = "f" + octaveNumber; break;
-            case 9:  letters = "f" + octaveNumber + "#"; break;
-            case 10: letters = "g" + octaveNumber; break;
-            case 11: letters = "g" + octaveNumber + "#"; break;
-            default: letters = "err";
+            case 0:  letters = "A" + octaveNumber; break;
+            case 1:  letters = "A" + octaveNumber + "#"; break;
+            case 2:  letters = "H" + octaveNumber; break;
+            case 3:  letters = "C" + octaveNumber; break;
+            case 4:  letters = "C" + octaveNumber + "#"; break;
+            case 5:  letters = "D" + octaveNumber; break;
+            case 6:  letters = "D" + octaveNumber + "#"; break;
+            case 7:  letters = "E" + octaveNumber; break;
+            case 8:  letters = "F" + octaveNumber; break;
+            case 9:  letters = "F" + octaveNumber + "#"; break;
+            case 10: letters = "G" + octaveNumber; break;
+            case 11: letters = "G" + octaveNumber + "#"; break;
+            default: letters = "-";
         }
         return letters;
     }

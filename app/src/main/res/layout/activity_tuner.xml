@@ -9,9 +9,9 @@
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
-        android:layout_width="392dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="0dp"
         android:theme="@style/AppTheme.AppBarOverlay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,17 +51,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
-    <com.example.tunergitarowy.TunerView
-        android:id="@+id/tunerView"
-        android:layout_width="335dp"
-        android:layout_height="273dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gauge1"
-        app:layout_constraintVertical_bias="0.0" />
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -77,18 +66,28 @@
         app:layout_constraintTop_toTopOf="@+id/gauge1"
         tools:layout_marginBottom="18dp" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="180dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Nagrywaj"
-        app:layout_constraintBottom_toBottomOf="@+id/tunerView"
-        app:layout_constraintEnd_toEndOf="@+id/tunerView"
-        app:layout_constraintStart_toStartOf="@+id/tunerView"
-        app:layout_constraintTop_toTopOf="@+id/tunerView" />
+    <TextView
+        android:id="@+id/textView44"
+        android:layout_width="293dp"
+        android:layout_height="49dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="354dp" />
+
+    <TextView
+        android:id="@+id/textView55"
+        android:layout_width="293dp"
+        android:layout_height="51dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="450dp" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="35dp"
+        android:layout_height="30dp"
+        app:srcCompat="@color/colorGreen"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="411dp" />
 
 </android.support.constraint.ConstraintLayout>
